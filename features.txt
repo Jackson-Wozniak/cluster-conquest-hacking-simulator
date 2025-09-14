@@ -10,3 +10,19 @@ each command/script has flags that are passed in order to change how the command
 
 For example, a command 'program_viewer.exe -helper=net_graph.exe' may be able to show
     which programs are communicating with external systems in the cluster
+
+
+
+Entity Model:
+    HomeNode -> the home node for the user, contains a list of edges to other clusters
+    Cluster -> The central graph for an external network
+        - SystemNode: Server -> the server node for the system
+        - List<SystemNode> systems -> the list of systems in the cluster
+    SystemNode
+        - ip address
+        - password
+        - permission level
+        - List<SystemNode> connected systems -> other nodes on the cluster that the system communicates with
+        - file directory
+            - List<Program> -> permanently running programs on the system
+            - List<File> -> list of files on the system
